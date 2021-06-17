@@ -12,7 +12,11 @@ int main(void) {
   
   integer = 10;
   floatNumber = 5.7;
-  
+  /*
+    %d integer
+    %c char
+    %f float
+  */
   //conditionals
   if(integer>floatNumber){
     printf("int is bigger than float\n");
@@ -34,7 +38,21 @@ int main(void) {
     default:
       printf("Unexpected value\n");
   }
-  
+
+  //iterators
+  while(integer>floatNumber){
+    printf("... %f\n",floatNumber);
+    floatNumber ++;
+  }
+
+  do{
+    printf("... %d\n",integer--);
+  }while(integer != 0);
+
+  for (count=0;count<=5;count++){
+    printf("....counter:%d",count);
+  }
+
   printf("Hello World\n");
   return 0;
 }

@@ -1,6 +1,8 @@
 #include <stdio.h>
 #define N 10
 
+//FIRST IN FIRST OUT
+
 struct est_fila{
   int fila[N];
   int contador;

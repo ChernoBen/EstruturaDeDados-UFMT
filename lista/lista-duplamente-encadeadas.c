@@ -33,7 +33,7 @@ int main(){
   //printf("%d\n",removeInicio(&lista));
   //printf("%d\n",removeFim(&lista));
   //imprimeLista(lista);
-  inserePosicao(&lista,7, 1);
+  inserePosicao(&lista,7, 0);
   imprimeLista(lista);
   removePosicao(&lista,1);
   imprimeLista(lista);
@@ -129,7 +129,13 @@ int removeFim(tipo_no **ls){
       aux = aux->prox;
     }
     vl = aux->valor;
-    aux->ant->prox=NULL;
+    if(aux->ant !=NULL){
+      aux->ant->prox=NULL;
+    }
+    //verifica se é o ultimo no
+    if(((*ls)->ant == NULL)&&((*ls)->prox == NULL)){
+      (*ls) = NULL;
+    }
     free(aux);
     return vl;
   }else{

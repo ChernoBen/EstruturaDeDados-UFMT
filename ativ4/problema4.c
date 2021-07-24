@@ -1,35 +1,46 @@
 #include <stdio.h>
 #include <stdlib.h>
+#define N 10
 
-//estrutura do da fila
-struct estru_no{
-  int valor;//espaco para guardar valor
-  struct estru_no *prox;//guarda endereco para outra estrutura
-  struct estru_no *ant;
+struct est_fila{
+  int fila[N];
+  int contador;
 };
-typedef struct estru_no tipo_no;
-tipo_no *alocaNovoNo(int vl);
-//prototipos
-//inserções
-void insereFim(tipo_no **ls,int vl);
-//remocoes
-int removeInicio(tipo_no **ls);
-//impressoes
-void imprimeLista(tipo_no *ls);
+typedef struct est_fila tipo_fila;
+
+void inicializaFila(tipo_fila *fl);
+void insereFila(tipo_fila *fl,int valor);
+int removeFila(tipo_fila *fl);
+//não executará modificação entao nao precisa de ponteiro
+void imprimeFila(tipo_fila fl);
 
 //---------------------------
 int main(){
+  tipo_fila fila;
+  fila.contador = 0;
+
   int entrada,status;
   status = 1;
-  tipo_no *exatas,*humanas,*saude;
-  exatas = NULL;
-  humanas = NULL;
-  saude=NULL;
+  tipo_fila exatas,humanas,saude;
+  
+  exatas.contador= 0 ;
+  humanas.contador = 0;
+  saude.contador = 0;
+
+  inicializaFila(&exatas);
+  inicializaFila(&humanas);
+  inicializaFila(&saude);
+
   int lvl1,lvl2,lvl3,lvl4;
-  int eCounter,hCounter,sCounter;
+  int eCounter,hCounter,sCounter,eAlunos,hAlunos,sAlunos;
+
   eCounter = 0;
   hCounter = 0;
   sCounter = 0;
+  eAlunos = 0;
+  sAlunos = 0;
+  hAlunos = 0;
+
   while(status == 1){
     printf("Selecione 1 para atendimento e 2 para demais serviços como gerar senha\nEntre com 0 para sair\n");
     printf("Status das filas:\nExatas em espera: %d\nHumanas em espera: %d\nSaúde em espera: %d\n",eCounter,hCounter,sCounter);
@@ -40,16 +51,66 @@ int main(){
         printf("Selecione qual área gostaria de atender\nEntre com 1 p/ exatas\nEntre com 2 p/ humanas\nEntre com 3 p/ saúde\nEntre com 0 p/ voltar ao inicio\n ");
         scanf("%d",&lvl1);
         if(lvl1 == 1){
-          printf("Senha %d exatas atendido com sucesso\nAguardando atendimento: %d\n \n",removeInicio(&exatas),eCounter--);
+          if(eCounter > 0){
+            printf("Entre com a quantidade em inteiro de alunos que gostaria de atender\n");
+            scanf("%d",&eAlunos);
+            if(eAlunos<eCounter){
+              printf("Senhas exatas atendidas com sucesso:[");
+              for (int i=0; i<eAlunos;i++){
+                printf(" %d ",removeFila(&exatas));
+                eCounter--;
+              }
+              printf("]\n");
+            }else{
+              printf("Quanidade de atendimentos supera quantidade em fila\n");
+            }
+          }else{
+            printf("Fila de exatas atualmente vazia!\n");
+          }
+
         }else if(lvl1 == 2){
-          printf("Senha %d humanas atendido com sucesso\nAguardando atendimento: %d\n \n",removeInicio(&humanas),hCounter--);
+          if(hCounter > 0){
+            printf("Entre com a quantidade em inteiro de alunos que gostaria de atender\n");
+            scanf("%d",&hAlunos);
+            if(hAlunos<hCounter){
+              printf("Senhas humanas atendidas com sucesso:[");
+              for(int i=0;i<hCounter;i++){
+                printf(" %d ", removeFila(&humanas));
+                hCounter--;
+              }
+              printf("]\n");
+
+            }else{
+              printf("Quanidade de atendimentos supera quantidade em fila\n");
+            }
+          }else{
+            printf("Fila de humanas atualmente vazia!\n");
+          }
+
         }else if(lvl1 == 3){
-          printf("Senha %d saúde atendido com sucesso\nAguardando atendimento: %d\n \n",removeInicio(&saude),sCounter--);
+          if(sCounter > 0){
+            printf("Entre com a quantidade em inteiro de alunos que gostaria de atender\n");
+            scanf("%d",&sAlunos);
+            if(sAlunos<sCounter){
+              printf("Senha %d saúde atendido com sucesso\nAguardando atendimento: %d\n \n",removeFila(&saude),sCounter--);
+              for(int i= 0; i<0;i++){
+                printf(" %d ",removeFila(&saude));
+                sCounter--;
+              }
+              printf("]\n");
+            }else{
+              printf("Quanidade de atendimentos supera quantidade em fila\n");
+            }
+          }else{
+            printf("Fila da Saúde atualmente vazia!\n");
+          }
+          
         }else{
           printf("Voltando para menu principal\n \n \n");
           lvl4 = 1;
         }
       }
+// -------------------entrada de alunos ---------------------      
     }else if(entrada == 2){
       lvl3 = 0;
       while(lvl3 !=1){
@@ -57,15 +118,15 @@ int main(){
         scanf("%d",&lvl2);
         if (lvl2 == 4){
           eCounter++;
-          insereFim(&exatas,eCounter);
+          insereFila(&exatas,eCounter);
           printf("Senha fila exatas: %d\n \n \n",eCounter);
         }else if(lvl2 == 5){
           hCounter++;
-          insereFim(&humanas,hCounter);
+          insereFila(&humanas,hCounter);
           printf("Senha fila humanas: %d\n \n \n",hCounter);
         }else if(lvl2 == 6){
           sCounter++;
-          insereFim(&saude,sCounter);
+          insereFila(&saude,sCounter);
           printf("Senha fila saúde: %d\n \n \n",sCounter);
         }else{
           printf("Voltando para menu principal\n \n \n");
@@ -79,61 +140,41 @@ int main(){
   return 1;
 }
 
-
-//------------------------
-
-int removeInicio(tipo_no **ls){
-  tipo_no *aux;
-  int vl;
-  if((*ls)->prox!=NULL){
-    vl = (*ls)->prox->valor;
-    aux = (*ls)->prox;
-    (*ls)->prox = (*ls)->prox->prox;
-    if((*ls)->prox !=NULL){
-      (*ls)->ant = (*ls);
+// no aloc
+int removeFila(tipo_fila *fl){
+  if(fl->contador > 0){
+    int aux;
+    aux = fl->fila[0];
+    //atualiza as posições no vetor
+    for(int i=0;i<fl->contador-1;i++){
+      fl->fila[i] = fl->fila[i+1];
     }
-    free(aux);
-    return vl;
+    fl->contador--;
+    return aux;
   }else{
-    printf("[error]lista vazia");
+    printf("[error] fila vazia");
     return -1;
   }
 }
 
-void insereFim(tipo_no **ls,int vl){
-  tipo_no *aux,*novo_no;
-  int count =0;
-  if((*ls)==NULL){
-    (*ls) = alocaNovoNo(vl);
-  }else{
-    aux = (*ls);
-    while(aux->prox !=NULL){
-      aux = aux->prox;
-      count ++;
-    }
-    if(count==0){
-      novo_no = alocaNovoNo(vl);
-      novo_no->ant = aux;
-      aux->prox = novo_no;
-    }else{
-      int val = aux->valor;
-      novo_no = alocaNovoNo(aux->valor);
-      aux->valor = vl;
-      aux->prox = novo_no;
-    } 
+void imprimeFila(tipo_fila fl){
+  int i;
+  printf("[");
+  for (i=0;i<fl.contador;i++){
+    printf("%d ",fl.fila[i]);
   }
+  printf("]\n");
 }
 
-//funcao de alocação
-tipo_no *alocaNovoNo(int vl){
-  //#1 criar um ponteiro tipo_no
-  tipo_no *novo_no;
-  //#2 alocar um espaco na memoria
-  novo_no = (tipo_no*) malloc(sizeof(tipo_no));
-  //#3 inicializar
-  novo_no->valor = vl;
-  novo_no->prox = NULL;
-  novo_no->ant = NULL;
-  //#4 retornar endereco de memoria do ponteiro criado
-  return novo_no;
+void inicializaFila(tipo_fila *fl){
+  fl->contador = 0;
+}
+
+void insereFila(tipo_fila *fl, int valor){
+  if (fl->contador < N){
+    fl->fila[fl->contador] = valor;
+    fl->contador++;
+  }else{
+    printf("---[Error] fila estáá cheia---");
+  }
 }

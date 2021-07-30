@@ -4,7 +4,7 @@
 #include <stdbool.h>
 
 #define max 1000
-typedef struct key{
+typedef struct item{
   char tipo;
 }TipoItem;
 
@@ -14,17 +14,17 @@ typedef struct pilha {
 }Pilha;
 
 //prototipos
-void criarPilha(Pilha *pi);
-void empilha(Pilha *pi,TipoItem c);
-int taVazia(Pilha pi);
-void desempilha(Pilha *pi,TipoItem *x);
+void criarPilha(Pilha *pl);
+void empilha(Pilha *pl,TipoItem c);
+int taVazia(Pilha pl);
+void desempilha(Pilha *pl,TipoItem *x);
 int prioridade(char a,char b);
-void imprime(Pilha *pi);
+void imprime(Pilha *pl);
 
 int main(){
   int counter =0;
-  Pilha pi;
-  criarPilha(&pi);
+  Pilha pl;
+  criarPilha(&pl);
   TipoItem elemento,pop;
   char funcao[max];
   int i,j;
@@ -36,62 +36,62 @@ int main(){
   for (i=0;i<strlen(funcao);i++){
     elemento.tipo = funcao[i];
     if((elemento.tipo == '-') || (elemento.tipo == '+') || (elemento.tipo == '/') || (elemento.tipo == '^') || (elemento.tipo == '*') || (elemento.tipo == '(') || (elemento.tipo == ')')){
-      if((pi.topo == 0)|| (elemento.tipo == '(')){
-        empilha(&pi,elemento);
-      }else if((pi.topo == 0)||(elemento.tipo==')')){
-        while((pi.topo>0)&&(pop.tipo!='(')){
+      if((pl.topo == 0)|| (elemento.tipo == '(')){
+        empilha(&pl,elemento);
+      }else if((pl.topo == 0)||(elemento.tipo==')')){
+        while((pl.topo>0)&&(pop.tipo!='(')){
           //printf("--\n");
-          imprime(&pi);
-          desempilha(&pi,&pop);
+          imprime(&pl);
+          desempilha(&pl,&pop);
         }
-        desempilha(&pi, &pop);
+        desempilha(&pl, &pop);
       }else{
-        while(pi.topo>0){
+        while(pl.topo>0){
           //printf("----2---\n");
-          imprime(&pi);
-          desempilha(&pi,&pop);
+          imprime(&pl);
+          desempilha(&pl,&pop);
         }
-        empilha(&pi,elemento);
+        empilha(&pl,elemento);
       }
     }else{
       printf("%c\n",elemento.tipo);
     }
   }
-  while(pi.topo>0){
+  while(pl.topo>0){
     //printf("---fim-----\n");
-    imprime(&pi);
-    desempilha(&pi,&pop);
+    imprime(&pl);
+    desempilha(&pl,&pop);
   }
   return 0;
 }
 
 //funções
 
-void criarPilha(Pilha *pi){
-  pi->topo=0;
+void criarPilha(Pilha *pl){
+  pl->topo=0;
 }
 
-void empilha(Pilha *pi,TipoItem c){
-  if(pi->topo == max){
+void empilha(Pilha *pl,TipoItem c){
+  if(pl->topo == max){
     printf("Pilha cheia.\n");
     return;
   }else{
-    pi->item[pi->topo] = c;
-    pi->topo++;
+    pl->item[pl->topo] = c;
+    pl->topo++;
   }
 }
 
-int taVazia(Pilha pi){
-  return (pi.topo == 0);
+int taVazia(Pilha pl){
+  return (pl.topo == 0);
 }
 
-void desempilha(Pilha *pi,TipoItem *x){
+void desempilha(Pilha *pl,TipoItem *x){
   char c;
-  if(taVazia(*pi)){
+  if(taVazia(*pl)){
     return;
   }else{
-    *x = pi->item[pi->topo-1];
-    pi->topo--;
+    *x = pl->item[pl->topo-1];
+    pl->topo--;
   }
 }
 
@@ -104,15 +104,15 @@ int prioridade(char a,char b){
 }
 
 //imprime
-void imprime(Pilha *pi){
+void imprime(Pilha *pl){
   TipoItem element;
   int *tes;
-  if(pi->topo ==0){
+  if(pl->topo ==0){
     printf("Pilha vazia.\n");
   }else{
     int i;
-    for(i = 0;i < pi->topo; i++){
-      element = pi->item[i]; 
+    for(i = 0;i < pl->topo; i++){
+      element = pl->item[i]; 
       printf("%c",element.tipo);
     }
   }

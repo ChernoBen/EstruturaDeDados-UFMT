@@ -8,9 +8,6 @@ struct est_lista{
   int contador;
 };
 
-
-// BAGUNÇAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA!!!!!!!!!!!!!!!!!!!!!
-
 //estrutura da nova lista/ possui o dobro do valor da l1
 typedef struct est_lista tipo_lista;
 struct nova_lista{
@@ -125,7 +122,7 @@ void insereFimNl(nl *novaL, int valor){
 }
 
 
-//-----------------------funções que o ivairton passou nas aula,
+//-----------------------funções que o ivairton passou nas aulas,
 //-----------------------necessarias para gerar lista1(l1) e l2
 int removeInicioNl(nl *novaL){
   if(novaL->contador > 0 ){
@@ -244,3 +241,6 @@ void insereFim(tipo_lista *ls, int valor){
     printf("[error] lista cheia\n");
   }
 }
+
+//passar na farmacia pegar 1-cx neosaldina
+//passar na loterica conferir resultado da quina 

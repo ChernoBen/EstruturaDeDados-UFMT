@@ -280,7 +280,7 @@ void concatena(tipo_no *l1,tipo_no *l2,tipo_no **l3){
 
 
 
-//---------------------
+//-------Daqui pra baixo o professor passou em aula--------------
 void inserePosicao(tipo_no **ls,int vl,int pos){
   tipo_no *novo_no,*aux,*aux2;
   int contador;

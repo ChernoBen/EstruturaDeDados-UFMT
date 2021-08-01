@@ -42,6 +42,17 @@ tipo_no *copiaLista(tipo_no *lista);
 
 //---------------------------
 int main(){
+  //Problema 1
+  /*
+    Uma vantagem de listas encadeadas é que elementos podem ser adicionados indefinidamente(desconsiderando a memória da máquina),
+  enquanto um array eventualmente ficará cheio ou terá que ser redimencionado. 
+    Remover elementos de um array deixa espaços vazios enquanto em listas encadeadas os nós podem ser apagados
+  liberando assim o espaço em memória que antes era ocupado por este nó.
+    Uma desvantagem de listas encadeadas em comparação com arrays, é que enquanto arrays podem ceder acesso a todos seus índices sem uma ordem específica,
+  listas encadeadas só permitem acesso sequencial, mesmo utilizando uma função que permite adicionar um elemento em uma posição determinada por um
+  usuário, essa função terá que "navegar" através de cada nó até chegar na posição desejada.
+  */
+  //Problema 2   
   tipo_no *l1,*l2,*l3,*l4,*l5;
   l1 = NULL;
   l2 = NULL;

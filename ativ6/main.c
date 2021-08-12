@@ -18,7 +18,9 @@ int main(){
   insereFim(&lista,6);
   imprimeLista(lista);
   //bubble
-  bubbleSort(&lista);
+  //bubbleSort(&lista);
+  //shellSort(&lista);
+  lista = insertSort(lista);
   imprimeLista(lista);
 
   return 1;

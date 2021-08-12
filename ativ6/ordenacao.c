@@ -14,7 +14,9 @@ Metodos de ordenação
 void bubbleSort(tipo_lista *lst);
 void shellSort(tipo_lista *lst);
 tipo_lista insertSort(tipo_lista lst);
-
+void mergeSort(tipo_lista *lst);
+void mergeSort_div(int vet[],int tam);
+void merge(int vet[],int tam);
 
 
 //metodos
@@ -84,6 +86,53 @@ tipo_lista insertSort(tipo_lista lst){
         }
     }
     return lst_ordenada;
+}
+
+void mergeSort_div(int vet[],int tam){
+    int meio;
+    if (tam > 1){
+        // se tamanho maior que 1 dividir vetor e chamar mergeSort_div recursivamente
+        meio = tam/2;
+        mergeSort_div(vet,meio);
+        mergeSort_div(&(vet[meio]),tam - meio);
+        //juntar
+        merge(vet,tam);
+    }
+}
+
+void merge(int vet[],int tam){
+    int *vet_aux;
+    int meio,idx_aux,i,j;
+
+    vet_aux = (int*) malloc(sizeof(int)*tam);
+    meio = tam/2;
+    i = 0;
+    j = meio;
+    idx_aux = 0;
+    while((i < meio)&&(j < tam)){
+        if (vet[i] < vet[j]){
+            vet_aux[idx_aux++] = vet[i++];
+        }else{
+            vet_aux[idx_aux++] = vet[j++];
+        }
+    }
+
+    while(i<meio){
+        vet_aux[idx_aux++] = vet[i++];
+    }
+
+    while(j<tam){
+        vet_aux[idx_aux++] = vet[j++];
+    }
+    //retornar valores ao vetor original
+    for(i=0;i<tam;i++){
+        vet[i] = vet_aux[i];
+    }
+    free(vet_aux);
+}
+
+void mergeSort(tipo_lista *lst){
+    mergeSort_div(lst->lista,lst->contador);
 }
 
 #endif

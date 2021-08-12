@@ -20,7 +20,8 @@ int main(){
   //bubble
   //bubbleSort(&lista);
   //shellSort(&lista);
-  lista = insertSort(lista);
+  //lista = insertSort(lista);
+  mergeSort(&lista);
   imprimeLista(lista);
 
   return 1;

@@ -19,7 +19,7 @@ void mergeSort_div(int vet[],int tam);
 void merge(int vet[],int tam);
 void quickSort(tipo_lista *lst);
 void quickSort_interno(int vet[],int inicio,int fim);
-void new_quick_sort(int *a, int left, int right);
+void new_quick_sort(int *vet, int inicio, int fim);
 
 //metodos
 void bubbleSort(tipo_lista *lst){
@@ -177,11 +177,9 @@ void quickSort_interno(int vet[],int inicio,int fim){
 
 void new_quick_sort(int *vet, int inicio, int fim) {
     int i, j, pivo, aux;
-     
     i = inicio;
     j = fim;
     pivo = vet[(inicio + fim) / 2];
-     
     while(i <= j) {
         while(vet[i] < pivo && i < fim) {
             i++;
@@ -197,7 +195,6 @@ void new_quick_sort(int *vet, int inicio, int fim) {
             j--;
         }
     }
-     
     if(j > inicio) {
         new_quick_sort(vet, inicio, j);
     }

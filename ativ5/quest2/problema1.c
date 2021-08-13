@@ -131,12 +131,6 @@ int main(){
   result = NULL;
   result = retornaPonteiro(l5, 1);
   printf("Valor no pontiero igual a : %d\n",result->valor);
-  //Q9
-  printf("Q9-------\n");
-  insereFim(&l5,5);
-  imprimeLista(l5);
-  deslocaNo(l5,2,1);
-  imprimeLista(l5);
   //q10
   printf("Q10-----\n");
   tipo_no *copia;

@@ -7,8 +7,8 @@ Metodos de ordenação
 #include <stdlib.h>
 #include <stdio.h>
 #include "lista.c"
-
-
+#include <time.h> 
+#include <unistd.h>
 
 //prototipos
 void bubbleSort(tipo_lista *lst);
@@ -23,6 +23,9 @@ void new_quick_sort(int *vet, int inicio, int fim);
 
 //metodos
 void bubbleSort(tipo_lista *lst){
+    double tempo_gasto = 0.0;
+    clock_t inicio = clock();
+
     int flag_troca,aux,idx;
     flag_troca = 1;
     while(flag_troca ){
@@ -38,9 +41,16 @@ void bubbleSort(tipo_lista *lst){
         }
 
     }
+
+    clock_t fim = clock();
+    tempo_gasto = (double)(fim - inicio) / CLOCKS_PER_SEC;
+    printf("Bubble Sort - Tempo gasto em segundos : %f\n",tempo_gasto);
 }
 
 void shellSort(tipo_lista *lst){
+    double tempo_gasto = 0.0;
+    clock_t inicio = clock();
+
     int flag_troca,aux,idx,k;
     k = lst->contador/2;
     flag_troca = 1;
@@ -69,9 +79,15 @@ void shellSort(tipo_lista *lst){
             idx++;
         }
     }
+    clock_t fim = clock();
+    tempo_gasto = (double)(fim - inicio) / CLOCKS_PER_SEC;
+    printf("Shell Sort - Tempo gasto em segundos : %f\n",tempo_gasto);
 }
 
 tipo_lista insertSort(tipo_lista lst){
+    double tempo_gasto = 0.0;
+    clock_t inicio = clock();
+
     int idx_lst,idx;
     tipo_lista lst_ordenada;
     inicializaLista(&lst_ordenada);
@@ -87,6 +103,11 @@ tipo_lista insertSort(tipo_lista lst){
             inserePosicao(&lst_ordenada,lst.lista[idx_lst],idx+1);
         }
     }
+
+    clock_t fim = clock();
+    tempo_gasto = (double)(fim - inicio) / CLOCKS_PER_SEC;
+    printf("Insert Sort - Tempo gasto em segundos : %f\n",tempo_gasto);
+
     return lst_ordenada;
 }
 
@@ -134,11 +155,22 @@ void merge(int vet[],int tam){
 }
 
 void mergeSort(tipo_lista *lst){
+    double tempo_gasto = 0.0;
+    clock_t inicio = clock();
     mergeSort_div(lst->lista,lst->contador);
+    clock_t fim = clock();
+    tempo_gasto = (double)(fim - inicio) / CLOCKS_PER_SEC;
+    printf("Merge Sort - Tempo gasto em segundos : %f\n",tempo_gasto);
 }
 
 void quickSort(tipo_lista *lst){
+    double tempo_gasto = 0.0;
+    clock_t inicio = clock();
     new_quick_sort(lst->lista,0,lst->contador-1);
+    //sleep(3);
+    clock_t fim = clock();
+    tempo_gasto = (double)(fim - inicio) / CLOCKS_PER_SEC;
+    printf("Quick Sort - Tempo gasto em segundos : %f\n",tempo_gasto);
 }
 
 void quickSort_interno(int vet[],int inicio,int fim){

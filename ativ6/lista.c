@@ -3,14 +3,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#define N 10000
+#define N 100000
 
-//Nao possui restricoes de entrada ou saida
-//insere e remove pelo mesmo lado
-
-/*
-remoçao trabalha igual remocao de fila
-*/
 
 struct est_lista{
   int lista[N];

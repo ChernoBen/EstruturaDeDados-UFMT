@@ -7,33 +7,28 @@
 
 //gcc main.c -o main
 int main(){
-  tipo_lista lista,nova_lista;
+  //quantidade
+  int qtd = 10000;
+  tipo_lista lista,shell_lst,bubble_lst,insert_lst,merge_lst,quick_lst;
   
-  inicializaLista(&lista);
-
-  insereFim(&lista,7);
-  insereFim(&lista,3);
-  insereFim(&lista,9);
-  insereFim(&lista,4);
-  insereFim(&lista,1);
-  insereFim(&lista,5);
-  insereFim(&lista,2);
-  insereFim(&lista,6);
-  imprimeLista(lista);
+  lista = geraLista(qtd);
+  bubble_lst = lista;
+  shell_lst = lista;
+  insert_lst = lista;
+  merge_lst = lista;
+  quick_lst = lista;
+  
   //bubble
-  //bubbleSort(&lista);
-  //shellSort(&lista);
-  //lista = insertSort(lista);
-  //mergeSort(&lista);
-  //quickSort(&lista);
-  nova_lista = geraLista(20);
-  //bubbleSort(&nova_lista);
-  //shellSort(&nova_lista);
-  //imprimeLista(insertSort(nova_lista));
-  //mergeSort(&nova_lista);
-  quickSort(&nova_lista);
-  //new_quick_sort(nova_lista.lista,0,nova_lista.contador-1);
-  imprimeLista(nova_lista);
+  bubbleSort(&bubble_lst);
+  //shell
+  shellSort(&shell_lst);
+  //insert
+  insert_lst = insertSort(insert_lst);
+  //merge
+  mergeSort(&merge_lst);
+  //quick
+  quickSort(&quick_lst);
+  
 
   return 1;
 }

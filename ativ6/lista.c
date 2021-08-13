@@ -2,7 +2,8 @@
 #define LISTA_C
 
 #include <stdio.h>
-#define N 10
+#include <stdlib.h>
+#define N 10000
 
 //Nao possui restricoes de entrada ou saida
 //insere e remove pelo mesmo lado

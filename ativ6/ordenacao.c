@@ -5,7 +5,7 @@ Metodos de ordenação
 #define ORDENACAO_C
 
 #include <stdlib.h>
-#include <stdlib.h>
+#include <stdio.h>
 #include "lista.c"
 
 
@@ -19,6 +19,7 @@ void mergeSort_div(int vet[],int tam);
 void merge(int vet[],int tam);
 void quickSort(tipo_lista *lst);
 void quickSort_interno(int vet[],int inicio,int fim);
+void new_quick_sort(int *a, int left, int right);
 
 //metodos
 void bubbleSort(tipo_lista *lst){
@@ -137,31 +138,34 @@ void mergeSort(tipo_lista *lst){
 }
 
 void quickSort(tipo_lista *lst){
-    quickSort_interno(lst->lista,0,lst->contador-1);
+    new_quick_sort(lst->lista,0,lst->contador-1);
 }
 
 void quickSort_interno(int vet[],int inicio,int fim){
-    int meio,pivo,i,j,aux;
-    meio = ((fim-inicio)/2)+inicio;
+    int meio,pivo,i,j,aux,k;
+    meio = ((fim-inicio)/2);
     pivo = vet[meio];
     i = inicio;
     j = fim;
 
-    while(i < j){
-        while(vet[i]<pivo){
+    while(i <= j){
+        while((vet[i]<pivo)&&(i<fim)){
             i++;
         }
-        while(vet[j]>pivo){
+        while((vet[j]>pivo)&&(j>inicio)){
             j--;
         }
-        if (i < j){
+        if (i <= j){
             aux = vet[i];
             vet[i] = vet[j];
             vet[j] = aux;
+            i++;
+            j--;
         }
     }
     if(i==j){
         i++;
+        j--;
     }
     if(j>inicio){
        quickSort_interno(vet,inicio,j); 
@@ -171,4 +175,34 @@ void quickSort_interno(int vet[],int inicio,int fim){
     }
 }
 
+void new_quick_sort(int *vet, int inicio, int fim) {
+    int i, j, pivo, aux;
+     
+    i = inicio;
+    j = fim;
+    pivo = vet[(inicio + fim) / 2];
+     
+    while(i <= j) {
+        while(vet[i] < pivo && i < fim) {
+            i++;
+        }
+        while(vet[j] > pivo && j > inicio) {
+            j--;
+        }
+        if(i <= j) {
+            aux = vet[i];
+            vet[i] = vet[j];
+            vet[j] = aux;
+            i++;
+            j--;
+        }
+    }
+     
+    if(j > inicio) {
+        new_quick_sort(vet, inicio, j);
+    }
+    if(i < fim) {
+        new_quick_sort(vet, i, fim);
+    }
+}
 #endif

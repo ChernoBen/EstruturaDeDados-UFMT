@@ -17,7 +17,8 @@ tipo_lista insertSort(tipo_lista lst);
 void mergeSort(tipo_lista *lst);
 void mergeSort_div(int vet[],int tam);
 void merge(int vet[],int tam);
-
+void quickSort(tipo_lista *lst);
+void quickSort_interno(int vet[],int inicio,int fim);
 
 //metodos
 void bubbleSort(tipo_lista *lst){
@@ -133,6 +134,41 @@ void merge(int vet[],int tam){
 
 void mergeSort(tipo_lista *lst){
     mergeSort_div(lst->lista,lst->contador);
+}
+
+void quickSort(tipo_lista *lst){
+    quickSort_interno(lst->lista,0,lst->contador-1);
+}
+
+void quickSort_interno(int vet[],int inicio,int fim){
+    int meio,pivo,i,j,aux;
+    meio = ((fim-inicio)/2)+inicio;
+    pivo = vet[meio];
+    i = inicio;
+    j = fim;
+
+    while(i < j){
+        while(vet[i]<pivo){
+            i++;
+        }
+        while(vet[j]>pivo){
+            j--;
+        }
+        if (i < j){
+            aux = vet[i];
+            vet[i] = vet[j];
+            vet[j] = aux;
+        }
+    }
+    if(i==j){
+        i++;
+    }
+    if(j>inicio){
+       quickSort_interno(vet,inicio,j); 
+    }
+    if(i<fim){
+        quickSort_interno(vet,i,fim);
+    }
 }
 
 #endif

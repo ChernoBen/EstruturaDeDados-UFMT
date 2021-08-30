@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#define N 100000
+#define N 20
 
 
 struct est_lista{

@@ -9,6 +9,7 @@ Metodos de ordenação
 #include "lista.c"
 #include <time.h> 
 #include <unistd.h>
+#include "heap.c"
 
 //prototipos
 void bubbleSort(tipo_lista *lst);
@@ -20,6 +21,7 @@ void merge(int vet[],int tam);
 void quickSort(tipo_lista *lst);
 void quickSort_interno(int vet[],int inicio,int fim);
 void new_quick_sort(int *vet, int inicio, int fim);
+void heapSort(tipo_lista *lista);
 
 //metodos
 void bubbleSort(tipo_lista *lst){
@@ -232,6 +234,20 @@ void new_quick_sort(int *vet, int inicio, int fim) {
     }
     if(i < fim) {
         new_quick_sort(vet, i, fim);
+    }
+}
+
+//metodo heapsort
+void heapSort(tipo_lista *lista){
+    tipo_heap heap;
+    int i;
+    //varrer lista e construir heap
+    for(i=0;i<lista->contador;i++){
+        insereHeap(&heap,lista->lista[i]);
+    }
+    //remover elemento a elemento e atualizar lstHeap
+    for(i=lista->contador-1;i>=0;i--){
+        lista->lista[i] = removeHeap(&heap);
     }
 }
 #endif

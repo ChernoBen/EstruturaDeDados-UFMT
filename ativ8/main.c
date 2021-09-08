@@ -14,10 +14,14 @@ int main(){
     insereArvBin(&arvore,20);
     insereArvBin(&arvore,40);
     //impressão em pré ordem
+
+    //9#
     percursoPreOrdem(arvore);
     printf("\n");
+    //10#
     percursoPosOrdem(arvore);
     printf("\n");
+    //11#
     percursoOrdem(arvore);
     printf("\n");
     return 1;

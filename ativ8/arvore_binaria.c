@@ -18,7 +18,9 @@ typedef struct est_arv_bin tipo_arv_bin;
 //Prototipos
 tipo_arv_bin *alocaNovoNo(int valor);
 void insereArvBin(tipo_arv_bin  **arv,int valor);
-
+void percursoPreOrdem(tipo_arv_bin *arv);
+void percursoPosOrdem(tipo_arv_bin *arv);
+void percursoOrdem(tipo_arv_bin *arv);
 
 //funcao que aloca novo nó da arvore binaria
 tipo_arv_bin *alocaNovoNo(int valor){
@@ -46,4 +48,31 @@ void insereArvBin(tipo_arv_bin **arv,int valor){
     }
 }
 
+//implementação do percurso pré ordem
+void percursoPreOrdem(tipo_arv_bin *arv){
+    if(arv !=NULL){
+        //1# imprimir
+        printf("%d ",arv->valor);
+        percursoPreOrdem(arv->esq);
+        percursoPreOrdem(arv->dir);
+    }
+}
+
+//implementação percurso pós ordem
+void percursoPosOrdem(tipo_arv_bin *arv){
+    if(arv != NULL){
+        percursoPosOrdem(arv->esq);
+        percursoPosOrdem(arv->dir);
+        printf("%d ", arv->valor);
+    }
+}
+
+//implementação percurso em ordem
+void percursoOrdem(tipo_arv_bin *arv){
+    if(arv!=NULL){
+        percursoOrdem(arv->esq);
+        printf("%d ", arv->valor);
+        percursoOrdem(arv->dir);
+    }
+}
 #endif // !ARVORE_BINARIA

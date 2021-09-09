@@ -15,6 +15,15 @@ int main(){
     insereArvBin(&arvore,18);
     insereArvBin(&arvore,20);
     insereArvBin(&arvore,40);
+    //3#
+    int res = buscaValor(arvore,11);
+    if(res == (-1)){
+        printf("Valor nao encontrado\n");   
+    }else{
+        printf("Resultado: %d\n",res);    
+    }
+    //4#
+    arvore = removeValor(arvore,9);
     //5#
     printf("total: %d\n",contaBilizaBin(arvore));
    //6#

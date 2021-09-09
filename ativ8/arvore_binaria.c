@@ -26,6 +26,8 @@ void percursoOrdem(tipo_arv_bin *arv);
 void imprimirNiveis(tipo_arv_bin arv);
 int contaBilizaBin(tipo_arv_bin *arv);
 int obterAlturaArv(tipo_arv_bin *arv);
+int buscaValor(tipo_arv_bin *arv,int vl);
+tipo_arv_bin *removeValor(tipo_arv_bin *arv, int vl);
 
 //funcao que aloca novo nó da arvore binaria
 tipo_arv_bin *alocaNovoNo(int valor){
@@ -101,4 +103,53 @@ int obterAlturaArv(tipo_arv_bin *arv){
     }
     return 0;
 }
+
+//funcao que busca um valor na arvore binaria
+int buscaValor(tipo_arv_bin *arv,int vl){
+    if(arv == NULL || arv->valor==vl){
+        if(arv == NULL){
+            return -1;
+        }else{
+            return arv->valor;
+        }
+    }
+    if(arv->valor > vl){
+        return buscaValor(arv->esq,vl);
+    }else{
+        return buscaValor(arv->dir,vl);
+    }
+}
+
+//remover valor definido pelo usuario
+tipo_arv_bin *removeValor(tipo_arv_bin *arv, int vl){
+    if(arv == NULL){
+        return NULL;
+    }else if(arv->valor > vl){
+        arv->esq = removeValor(arv->esq,vl);
+    }else if(arv->valor < vl){
+        arv->dir = removeValor(arv->dir,vl);
+    }
+    if(arv->esq == NULL && arv->dir == NULL){
+        free(arv);
+        arv = NULL;
+    }else if(arv->esq == NULL){
+        tipo_arv_bin *aux  = arv;
+        arv = arv->dir;
+        free(aux);
+    }else if(arv->dir == NULL){
+        tipo_arv_bin *aux2 = arv;
+        arv = arv->esq;
+        free(aux2);
+    }else{
+        tipo_arv_bin *nova_arv = arv->esq;
+        while(nova_arv->dir != NULL){
+            nova_arv = nova_arv->dir;
+        }
+        arv->valor = nova_arv->valor;
+        nova_arv->valor = vl;
+        arv->esq = removeValor(arv->esq,vl);
+    }
+    return arv;
+}
+
 #endif // !ARVORE_BINARIA

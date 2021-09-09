@@ -21,7 +21,7 @@ void insereArvBin(tipo_arv_bin  **arv,int valor);
 void percursoPreOrdem(tipo_arv_bin *arv);
 void percursoPosOrdem(tipo_arv_bin *arv);
 void percursoOrdem(tipo_arv_bin *arv);
-void imprimirNiveis(tipo_arv_bin arv);
+void imprimirNiveis(tipo_arv_bin *arv);
 int contaBilizaBin(tipo_arv_bin *arv);
 int obterAlturaArv(tipo_arv_bin *arv);
 int buscaValor(tipo_arv_bin *arv,int vl);
@@ -164,4 +164,21 @@ void imprimeFolhas(tipo_arv_bin *arv){
     }
 }
 
+//funcao que imprime niveis da arbore binaria
+void imprimirNiveis(tipo_arv_bin *arv){
+    //printf("\n");
+    if(arv!=NULL) {
+        
+        if(arv->dir!=NULL) { 
+            printf("%d  ",arv->dir->valor);
+            imprimirNiveis(arv->dir);
+        }
+        
+        if(arv->esq!=NULL) { 
+            printf("%d  ",arv->esq->valor);
+            imprimirNiveis(arv->esq);
+        }
+        
+    }
+}
 #endif // !ARVORE_BINARIA

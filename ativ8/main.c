@@ -32,7 +32,10 @@ int main(){
     printf("Altura: %d\n",obterAlturaArv(arvore));
     //7#
     imprimeFolhas(arvore);
-    printf("\n");
+    printf("\n\n");
+    //8#
+    imprimirNiveis(arvore);
+    printf("\n\n");
     //9#
     percursoPreOrdem(arvore);
     printf("\n");

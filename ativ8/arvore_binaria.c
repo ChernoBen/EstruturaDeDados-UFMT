@@ -12,6 +12,7 @@ struct est_arv_bin{
     struct est_arv_bin *esq;
     struct est_arv_bin *dir;
     int valor;
+    int altura;
 };
 typedef struct est_arv_bin tipo_arv_bin;
 
@@ -21,6 +22,7 @@ void insereArvBin(tipo_arv_bin  **arv,int valor);
 void percursoPreOrdem(tipo_arv_bin *arv);
 void percursoPosOrdem(tipo_arv_bin *arv);
 void percursoOrdem(tipo_arv_bin *arv);
+void imprimirNiveis(tipo_arv_bin *arv);
 
 //funcao que aloca novo nó da arvore binaria
 tipo_arv_bin *alocaNovoNo(int valor){
@@ -73,6 +75,17 @@ void percursoOrdem(tipo_arv_bin *arv){
         percursoOrdem(arv->esq);
         printf("%d ", arv->valor);
         percursoOrdem(arv->dir);
+    }
+}
+
+//funcao que imprime valores por nivel
+void imprimirNiveis(tipo_arv_bin *arv){
+    int level = 0;
+    if(arv!=NULL){
+        printf("%d ",arv->valor);
+        imprimirNiveis(arv->esq);
+        imprimirNiveis(arv->dir);
+        //printf("-----\n");
     }
 }
 #endif // !ARVORE_BINARIA

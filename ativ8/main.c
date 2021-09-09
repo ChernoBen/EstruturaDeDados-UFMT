@@ -4,8 +4,10 @@
 #include "arvore_binaria.c"
 
 int main(){
+    //1#
     tipo_arv_bin *arvore;
     arvore = NULL;
+    //2#
     insereArvBin(&arvore,10);
     insereArvBin(&arvore,3);
     insereArvBin(&arvore,9);
@@ -14,7 +16,9 @@ int main(){
     insereArvBin(&arvore,20);
     insereArvBin(&arvore,40);
     //impressão em pré ordem
-
+    //8#
+    imprimirNiveis(arvore);
+    printf("\n");
     //9#
     percursoPreOrdem(arvore);
     printf("\n");

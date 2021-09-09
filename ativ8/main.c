@@ -15,6 +15,8 @@ int main(){
     insereArvBin(&arvore,18);
     insereArvBin(&arvore,20);
     insereArvBin(&arvore,40);
+    insereArvBin(&arvore,9);
+    insereArvBin(&arvore,14);
     //3#
     int res = buscaValor(arvore,11);
     if(res == (-1)){
@@ -26,8 +28,11 @@ int main(){
     arvore = removeValor(arvore,9);
     //5#
     printf("total: %d\n",contaBilizaBin(arvore));
-   //6#
+    //6#
     printf("Altura: %d\n",obterAlturaArv(arvore));
+    //7#
+    imprimeFolhas(arvore);
+    printf("\n");
     //9#
     percursoPreOrdem(arvore);
     printf("\n");

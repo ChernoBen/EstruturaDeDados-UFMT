@@ -12,8 +12,6 @@ struct est_arv_bin{
     struct est_arv_bin *esq;
     struct est_arv_bin *dir;
     int valor;
-    int altura;
-    int total;
 };
 typedef struct est_arv_bin tipo_arv_bin;
 
@@ -28,6 +26,7 @@ int contaBilizaBin(tipo_arv_bin *arv);
 int obterAlturaArv(tipo_arv_bin *arv);
 int buscaValor(tipo_arv_bin *arv,int vl);
 tipo_arv_bin *removeValor(tipo_arv_bin *arv, int vl);
+void imprimeFolhas(tipo_arv_bin *arv);
 
 //funcao que aloca novo nó da arvore binaria
 tipo_arv_bin *alocaNovoNo(int valor){
@@ -150,6 +149,19 @@ tipo_arv_bin *removeValor(tipo_arv_bin *arv, int vl){
         arv->esq = removeValor(arv->esq,vl);
     }
     return arv;
+}
+//função que imprime folhas
+void imprimeFolhas(tipo_arv_bin *arv){
+    if(arv==NULL){
+        printf("");
+    }else{
+        if(arv->esq == NULL && arv->dir == NULL){
+            printf("%d ",arv->valor);
+        }else{
+            imprimeFolhas(arv->esq);
+            imprimeFolhas(arv->dir);
+        }
+    }
 }
 
 #endif // !ARVORE_BINARIA

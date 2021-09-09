@@ -15,7 +15,8 @@ int main(){
     insereArvBin(&arvore,18);
     insereArvBin(&arvore,20);
     insereArvBin(&arvore,40);
-    //impressão em pré ordem
+    //5#
+    printf("total: %d\n",contaBilizaBin(arvore));
     //8#
     imprimirNiveis(arvore);
     printf("\n");

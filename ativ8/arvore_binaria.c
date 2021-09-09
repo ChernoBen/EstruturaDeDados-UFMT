@@ -13,6 +13,7 @@ struct est_arv_bin{
     struct est_arv_bin *dir;
     int valor;
     int altura;
+    int total;
 };
 typedef struct est_arv_bin tipo_arv_bin;
 
@@ -23,6 +24,7 @@ void percursoPreOrdem(tipo_arv_bin *arv);
 void percursoPosOrdem(tipo_arv_bin *arv);
 void percursoOrdem(tipo_arv_bin *arv);
 void imprimirNiveis(tipo_arv_bin *arv);
+int contaBilizaBin(tipo_arv_bin *arv);
 
 //funcao que aloca novo nó da arvore binaria
 tipo_arv_bin *alocaNovoNo(int valor){
@@ -88,4 +90,14 @@ void imprimirNiveis(tipo_arv_bin *arv){
         //printf("-----\n");
     }
 }
+
+//func que contabiliza quantidade de itens na arv
+int contaBilizaBin(tipo_arv_bin *arv){
+    if(arv == NULL){
+        return 0;
+    }else{
+        return contaBilizaBin(arv->esq)+contaBilizaBin(arv->dir)+1;
+    }
+}
+
 #endif // !ARVORE_BINARIA

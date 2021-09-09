@@ -23,8 +23,9 @@ void insereArvBin(tipo_arv_bin  **arv,int valor);
 void percursoPreOrdem(tipo_arv_bin *arv);
 void percursoPosOrdem(tipo_arv_bin *arv);
 void percursoOrdem(tipo_arv_bin *arv);
-void imprimirNiveis(tipo_arv_bin *arv);
+void imprimirNiveis(tipo_arv_bin arv);
 int contaBilizaBin(tipo_arv_bin *arv);
+int obterAlturaArv(tipo_arv_bin *arv);
 
 //funcao que aloca novo nó da arvore binaria
 tipo_arv_bin *alocaNovoNo(int valor){
@@ -81,15 +82,7 @@ void percursoOrdem(tipo_arv_bin *arv){
 }
 
 //funcao que imprime valores por nivel
-void imprimirNiveis(tipo_arv_bin *arv){
-    int level = 0;
-    if(arv!=NULL){
-        printf("%d ",arv->valor);
-        imprimirNiveis(arv->esq);
-        imprimirNiveis(arv->dir);
-        //printf("-----\n");
-    }
-}
+
 
 //func que contabiliza quantidade de itens na arv
 int contaBilizaBin(tipo_arv_bin *arv){
@@ -100,4 +93,12 @@ int contaBilizaBin(tipo_arv_bin *arv){
     }
 }
 
+//funcao que retorna a altura da arvore binaria
+int obterAlturaArv(tipo_arv_bin *arv){
+    int altura = contaBilizaBin(arv);
+    if(altura>1){
+        return altura/2;
+    }
+    return 0;
+}
 #endif // !ARVORE_BINARIA

@@ -17,9 +17,8 @@ int main(){
     insereArvBin(&arvore,40);
     //5#
     printf("total: %d\n",contaBilizaBin(arvore));
-    //8#
-    imprimirNiveis(arvore);
-    printf("\n");
+   //6#
+    printf("Altura: %d\n",obterAlturaArv(arvore));
     //9#
     percursoPreOrdem(arvore);
     printf("\n");

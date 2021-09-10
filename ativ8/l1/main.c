@@ -63,12 +63,32 @@ int main(){
     /*
     Lista 2
     */
+    //1#
     tipo_arv_mf *arv;
     arv = NULL;
+    //2#
     insereArvMf(&arv,10);
     insereArvMf(&arv,7);
     insereArvMf(&arv,1);
+
+    insereArvMf(&arv,15);
+    insereArvMf(&arv,0);
+    insereArvMf(&arv,5);
+    insereArvMf(&arv,8);
+    //3#
+    res = buscaValorMf(arv,9);
+    if(res == (-1)){
+        printf("Valor não encontrado ou arvore é nula\n");
+    }else{
+        printf("Valor %d encontrado!\n",res);
+    }
+    //9#
+    percursoPreOrdemMf(arv);
+    printf("\n");
+    //10#
+    percursoPosOrdemMf(arv);
+    printf("\n");
     //insereArvMf(&arv,1);
-    printf("%d | %d | %d | %d \n",arv->valores[0],arv->valores[1],arv->valores[2],arv->valores[3]);
+    //printf("%d | %d | %d | %d \n",arv->valores[0],arv->valores[1],arv->valores[2],arv->valores[3]);
     return 1;
 }

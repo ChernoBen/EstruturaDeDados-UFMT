@@ -63,14 +63,16 @@ int main(){
     /*
     Lista 2
     */
+    printf("Lista 2\n");
+    printf("1#\n");
     //1#
     tipo_arv_mf *arv;
     arv = NULL;
     //2#
+    printf("2# \n");
     insereArvMf(&arv,10);
     insereArvMf(&arv,7);
     insereArvMf(&arv,1);
-
     insereArvMf(&arv,15);
     insereArvMf(&arv,0);
     insereArvMf(&arv,5);
@@ -78,21 +80,23 @@ int main(){
     //insereArvMf(&arv,6);
     //insereArvMf(&arv,2);
     //3#
+    printf("3#\n");
     res = buscaValorMf(arv,9);
     if(res == (-1)){
         printf("Valor não encontrado ou arvore é nula\n");
     }else{
         printf("Valor %d encontrado!\n",res);
     }
-    //7#
-    imprimeFolhasMf(arv);
     //9#
+    printf("9#\n");
     percursoPreOrdemMf(arv);
     printf("\n");
     //10#
+    printf("10#\n");
     percursoPosOrdemMf(arv);
     printf("\n");
     //11#
+    printf("11#\n");
     imprimirOrdemMf(arv);
     printf("\n");
     //insereArvMf(&arv,1);

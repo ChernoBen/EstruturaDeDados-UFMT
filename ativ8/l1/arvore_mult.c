@@ -153,7 +153,7 @@ int buscaValorMf(tipo_arv_mf *arv,int vl){
     }
 }
 
-//Em Order
+//Em Ordem
 void imprimirOrdemMf(tipo_arv_mf *arv){
     if(arv==NULL){
         return;
@@ -164,11 +164,5 @@ void imprimirOrdemMf(tipo_arv_mf *arv){
     }
     imprimirOrdemMf(arv->filhos[arv->contador]);
 }
-
-/*
-Remoção	de	uma	chave	em	um	nó,	causando	
-underflow	e	a	redistribuição	não	pode	ser	
-aplicada
-*/
 
 #endif // !ARVORE_MULT

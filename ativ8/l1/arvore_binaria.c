@@ -181,4 +181,5 @@ void imprimirNiveis(tipo_arv_bin *arv){
         
     }
 }
+
 #endif // !ARVORE_BINARIA

@@ -75,6 +75,8 @@ int main(){
     insereArvMf(&arv,0);
     insereArvMf(&arv,5);
     insereArvMf(&arv,8);
+    //insereArvMf(&arv,6);
+    //insereArvMf(&arv,2);
     //3#
     res = buscaValorMf(arv,9);
     if(res == (-1)){
@@ -82,11 +84,16 @@ int main(){
     }else{
         printf("Valor %d encontrado!\n",res);
     }
+    //7#
+    imprimeFolhasMf(arv);
     //9#
     percursoPreOrdemMf(arv);
     printf("\n");
     //10#
     percursoPosOrdemMf(arv);
+    printf("\n");
+    //11#
+    imprimirOrdemMf(arv);
     printf("\n");
     //insereArvMf(&arv,1);
     //printf("%d | %d | %d | %d \n",arv->valores[0],arv->valores[1],arv->valores[2],arv->valores[3]);

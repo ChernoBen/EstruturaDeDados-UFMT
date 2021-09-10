@@ -22,9 +22,46 @@ void insereArvMf(tipo_arv_mf **arv,int vl);
 void percursoPreOrdemMf(tipo_arv_mf *arv);
 void percursoPosOrdemMf(tipo_arv_mf *arv);
 int buscaValorMf(tipo_arv_mf *arv,int vl);
+int contaBilizaMf(tipo_arv_mf *arv);
+void imprimeFolhasMf(tipo_arv_mf *arv);
 
 //funcoes
 
+//funcao que imprime folhas mf
+void imprimeFolhasMf(tipo_arv_mf *arv){
+    int i=0;
+    if(arv==NULL){
+        printf("");
+    }else{
+        if(arv->filhos != NULL){
+            for(i=0;i<arv->contador-1;i++){
+                imprimeFolhasMf(arv->filhos[i]);
+            }
+            
+        }else{
+            for(i=0;i<T;i++){
+                printf("%d ",arv->valores[i]);
+            }
+        }
+    }
+}
+
+//funcao que retorna total de itens na arv mf
+int contaBilizaMf(tipo_arv_mf *arv){
+    int total,i;
+    total = 0;
+    if(arv == NULL){
+        return 0;
+    }else{
+        for(i=0;i<T;i++){
+            total ++;
+        }
+        for(i=0;i<=arv->contador;i++){
+            total += contaBilizaMf(arv->filhos[i]);
+        }
+        return total;
+    }
+}
 //aloca novo no
 tipo_arv_mf *alocaNovoNoArvMf(int valor){
     int i;
@@ -115,4 +152,23 @@ int buscaValorMf(tipo_arv_mf *arv,int vl){
         return -1;
     }
 }
+
+//Em Order
+void imprimirOrdemMf(tipo_arv_mf *arv){
+    if(arv==NULL){
+        return;
+    }
+    for(int i =0;i<arv->contador;i++){
+        imprimirOrdemMf(arv->filhos[i]);
+        printf("%d ",arv->valores[i]);
+    }
+    imprimirOrdemMf(arv->filhos[arv->contador]);
+}
+
+/*
+Remoção	de	uma	chave	em	um	nó,	causando	
+underflow	e	a	redistribuição	não	pode	ser	
+aplicada
+*/
+
 #endif // !ARVORE_MULT

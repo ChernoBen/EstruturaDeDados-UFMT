@@ -2,14 +2,18 @@
 #include <stdlib.h>
 
 #include "arvore_binaria.c"
+#include "arvore_mult.c"
 
 int main(){
+    /*
+    Lista 1
+    */
     //1#
-    printf("QUESTAO 1#");
+    printf("QUESTAO 1#\n");
     tipo_arv_bin *arvore;
     arvore = NULL;
     //2#
-    printf("QUESTAO 2#");
+    printf("QUESTAO 2#\n");
     insereArvBin(&arvore,10);
     insereArvBin(&arvore,3);
     insereArvBin(&arvore,9);
@@ -20,7 +24,7 @@ int main(){
     insereArvBin(&arvore,9);
     insereArvBin(&arvore,14);
     //3#
-    printf("QUESTAO 3#");
+    printf("QUESTAO 3#\n");
     int res = buscaValor(arvore,11);
     if(res == (-1)){
         printf("Valor nao encontrado\n");   
@@ -56,5 +60,15 @@ int main(){
     printf("QUESTAO 11#\n");
     percursoOrdem(arvore);
     printf("\n");
+    /*
+    Lista 2
+    */
+    tipo_arv_mf *arv;
+    arv = NULL;
+    insereArvMf(&arv,10);
+    insereArvMf(&arv,7);
+    insereArvMf(&arv,1);
+    //insereArvMf(&arv,1);
+    printf("%d | %d | %d | %d \n",arv->valores[0],arv->valores[1],arv->valores[2],arv->valores[3]);
     return 1;
 }
